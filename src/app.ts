@@ -4,6 +4,9 @@ import express from 'express';
 import "express-async-errors";
 import {errorHandlerMiddleware} from "./middlewares/errorHandlerMiddleware";
 import router from "./routes/index";
+import * as dotenv from 'dotenv';
+dotenv.config({path:".env"});
+
 
 const app = express();
 app.use(express.json());
@@ -11,4 +14,8 @@ app.use(cors());
 app.use(router);
 app.use(errorHandlerMiddleware);
 
-export default app
+const PORT = Number(process.env.PORT+"") || 4000;
+
+app.listen(PORT,()=>{
+    console.log(`Running Server on port ${PORT}`);
+})

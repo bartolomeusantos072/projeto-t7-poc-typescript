@@ -8,7 +8,6 @@ const authRouter = Router();
 authRouter.post(
     "/sign-up",
     validateSchemaMiddleware(createUserSchema),
-    validateSchemaMiddleware(addressSchema),
     signUp
 );
 authRouter.post(

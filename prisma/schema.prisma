@@ -23,12 +23,12 @@ model User {
   cellphone String
   cpf       String
   photo     String
+  address  Address[]
 
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
   deleteAt  DateTime @updatedAt
 
-  address  Address[]
   services Service[]
 
   @@map("users")

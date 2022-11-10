@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "",
-    "dev": "tsnd --respawn --transpile-only src/server.ts"
+    "test": "npx nodemon src/app.ts",
+    "dev": "npx tsc"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -24,11 +24,14 @@
     "git-commit-msg-linter": "^4.2.1",
     "prisma": "^4.6.0",
     "prisma-erd-generator": "^1.2.3",
-    "ts-node-dev": "^2.0.0",
+    "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cors": "2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "express-async-errors": "3.1.1",
     "joi": "^17.7.0",
     "jsonwebtoken": "^8.5.1"
