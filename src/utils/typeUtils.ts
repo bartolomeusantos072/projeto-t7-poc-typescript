@@ -6,4 +6,4 @@ export type LoginUser = {
     password:string,
 }
 export type CreateAddress = Omit<Address,"id"|'userId'>
-export type CreateService = Omit<Service,"id">
+export type CreateService = Omit<Service,"id"|"userId">

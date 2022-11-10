@@ -6,7 +6,7 @@ import { unauthorizedError } from "../utils/errorUtils";
 import { CreateUserData } from "../utils/typeUtils";
 dotenv.config();
 
-export async function ensureAuthenticatedMiddleware(
+export async function authMiddleware(
   req: Request,
   res: Response,
   next: NextFunction

@@ -8,8 +8,8 @@ export async function signUp(req: Request, res: Response) {
     }:CreateUserData = req.body
     const user = {email, password, name, phone, cellphone, cpf, photo }
     const myAddress:CreateAddress = req.body.address
-    const result =await userService.createUserData(user ,myAddress);
-    console.log("Resultado", result)
+    await userService.createUserData(user ,myAddress);
+    
     res.sendStatus(201);
 }
 
