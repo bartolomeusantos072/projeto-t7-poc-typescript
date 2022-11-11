@@ -4,9 +4,9 @@ import  {jobService} from "../services/jobService";
 
 
 export async function addMyJob(req: Request, res: Response) {
-    const {user}= res.locals;
+    const {id}= res.locals.user;
     const job = req.body;
-    await jobService.addJobService(job ,user.id)
+    await jobService.addJobService(job ,id)
 
     res.sendStatus(201); // created
   }

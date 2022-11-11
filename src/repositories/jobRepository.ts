@@ -64,9 +64,11 @@ export async function updateJob(job:CreateJob,jobId:number) {
 }
 
 export async function findAllJobs(userId:number) {
-    return prisma.service.findMany({
+    const result = prisma.service.findMany({
       where:{
           userId:userId,
       }
-    })    
+    })
+    
+    return result    
   }
