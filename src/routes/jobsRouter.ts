@@ -1,14 +1,15 @@
 import { Router } from "express";
 import { validateSchemaMiddleware } from "../middlewares/validateSchemaMiddleware";
-import { serviceSchema} from "../schemas/serviceSchema";
+import { serviceSchema, upServiceSchema} from "../schemas/serviceSchema";
 import { authMiddleware } from "../middlewares/authMiddleware";
-import { addMyJob, readJobs, deleteMyJob} from "../controllers/jobController";
+import { addMyJob, readJobs, updateMyJob, deleteMyJob} from "../controllers/jobController";
 
 const jobsRouter = Router();
 jobsRouter.use(authMiddleware);
 jobsRouter.post( "/job-create",  validateSchemaMiddleware(serviceSchema), addMyJob );
 jobsRouter.get("/job-read",readJobs)
-jobsRouter.delete("/job-delete/id",validateSchemaMiddleware,deleteMyJob)
+jobsRouter.put("/job-update/:id",validateSchemaMiddleware(upServiceSchema),updateMyJob)
+jobsRouter.delete("/job-delete/:id",validateSchemaMiddleware,deleteMyJob)
 
 
 export default jobsRouter

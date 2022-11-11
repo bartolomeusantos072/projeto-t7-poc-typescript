@@ -29,6 +29,15 @@ async function findAllJobs(userId:number) {
     })
     
 }
+
+async function updateJobService(userId:number, jobId:number, job:CreateJob){
+    
+    const search =  await jobRepository.findJobById(userId,jobId);
+    if(!search)throw notFoundError("Job doesn't exist");
+   
+    await jobRepository.updateJob(job,jobId);
+}
+
 async function deleteJobService(userId:number, jobId:number){
    
     const verifyJob = await jobRepository.findJobById(userId,userId);
@@ -39,5 +48,6 @@ async function deleteJobService(userId:number, jobId:number){
 export const jobService = {
     addJobService,
     findAllJobs,
+    updateJobService,
     deleteJobService,
 }
