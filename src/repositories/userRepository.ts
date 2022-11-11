@@ -1,5 +1,5 @@
 import {prisma} from "../config/database";
-import { CreateAddress, CreateUserData } from "../utils/typeUtils";
+import { CreateAddress, CreateUserData } from "../protocols/types";
 
 
 export async function findUserEmail(email: string) {

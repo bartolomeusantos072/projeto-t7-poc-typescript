@@ -1,9 +1,8 @@
 import { conflictError, notFoundError, unauthorizedError } from "../utils/errorUtils";
-import { CreateAddress, CreateUserData, LoginUser } from "../utils/typeUtils";
+import { CreateAddress, CreateUserData, LoginUser } from "../protocols/types";
 import * as userRepository from "../repositories/userRepository";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { Address } from "@prisma/client";
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -25,7 +24,7 @@ async function createUserData(user:CreateUserData, address:CreateAddress) {
    
     const SALT = 10;
     const hashPassword = bcrypt.hashSync(user.password, SALT);
-    const resultUser = await userRepository.insert({ ...user, password: hashPassword },address)
+    await userRepository.insert({ ...user, password: hashPassword },address)
    
    
 

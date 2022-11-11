@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import {userService} from "../services/userService";
 import { unauthorizedError } from "../utils/errorUtils";
-import { CreateUserData } from "../utils/typeUtils";
+import { CreateUserData } from "../protocols/types";
 dotenv.config();
 
 export async function authMiddleware(

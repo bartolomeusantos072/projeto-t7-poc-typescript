@@ -1,5 +1,5 @@
 import joi from "joi";
-import { CreateAddress, LoginUser } from "../utils/typeUtils";
+import { CreateAddress, LoginUser } from "../protocols/types";
 
 export const addressSchema = joi.object<CreateAddress>({
   street: joi.string().required(),

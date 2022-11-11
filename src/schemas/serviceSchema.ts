@@ -1,7 +1,9 @@
 import joi from 'joi';
-import { CreateService } from '../utils/typeUtils';
+import { CreateJob } from '../protocols/types';
 
-export const serviceSchema = joi.object<CreateService>({
+const regex =/^((R)\$(\s)?(\d{1,3}(\.\d{3})*,\d{2}))/
+
+export const serviceSchema = joi.object<CreateJob>({
     descrition: joi.string().required().trim(),
-    price: joi.string().allow('', null).default('Valor a Negociar'),
+    price: joi.string().pattern(regex).allow("").required(),
 })

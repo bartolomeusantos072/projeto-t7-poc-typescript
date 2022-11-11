@@ -1,11 +1,11 @@
 import { Router } from "express";
 
 import authRouter from "./authRouter";
-import serviceRouter from "./serviceRouter";
+import jobsRouter from "./jobsRouter";
 
 const router= Router();
 
 router.use(authRouter);
-router.use(serviceRouter);
+router.use(jobsRouter);
 
 export default router;
