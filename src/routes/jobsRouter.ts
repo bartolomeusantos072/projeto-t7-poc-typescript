@@ -9,7 +9,7 @@ jobsRouter.use(authMiddleware);
 jobsRouter.post( "/job-create",  validateSchemaMiddleware(serviceSchema), addMyJob );
 jobsRouter.get("/job-read",readJobs)
 jobsRouter.put("/job-update/:id",validateSchemaMiddleware(upServiceSchema),updateMyJob)
-jobsRouter.delete("/job-delete/:id",validateSchemaMiddleware,deleteMyJob)
+jobsRouter.delete("/job-delete/:id",deleteMyJob)
 
 
 export default jobsRouter

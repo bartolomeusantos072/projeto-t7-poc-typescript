@@ -23,7 +23,7 @@ export async function findJobByUser(job:CreateJob, id:number) {
 }
 
 export async function findJobById(userId:number,jobId:number){
-    console.log(`Passo 3 - usuario  ${userId} de serviço ${jobId}`)
+   
 
     const result = prisma.service.findFirst({
         where:{
@@ -31,11 +31,17 @@ export async function findJobById(userId:number,jobId:number){
              userId:userId,
            },
     })
-    
     return result
 }
 
-
+export async function deleteJob(jobId:number) {
+    return prisma.service.delete({
+        where:{
+            id:jobId,
+        }
+    })
+    
+}
 
 export async function addJob(job:CreateJob, id:number){
     return prisma.service.create({
@@ -46,8 +52,6 @@ export async function addJob(job:CreateJob, id:number){
     })
 }
 export async function updateJob(job:CreateJob,jobId:number) {
-    console.log(job)
-    
 
     return prisma.service.update({
         where: {

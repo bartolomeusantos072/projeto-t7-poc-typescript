@@ -32,13 +32,13 @@ export async function updateMyJob(req:Request, res:Response) {
 
 export async function deleteMyJob(req: Request, res: Response) {
 
-  const { user } = res.locals;
+  const { id } = res.locals.user;
   const jobId = parseInt(req.params.id);
   
   if (isNaN(jobId)) {
       res.sendStatus(422); 
   }
 
-  await jobService.deleteJobService(user.id, jobId);
-  res.sendStatus(200);
+  const result = await jobService.deleteJobService(id, jobId);
+  res.status(200).send(result);
 }

@@ -39,10 +39,12 @@ async function updateJobService(userId:number, jobId:number, job:CreateJob){
 }
 
 async function deleteJobService(userId:number, jobId:number){
-   
-    const verifyJob = await jobRepository.findJobById(userId,userId);
-    console.log("Encontrado",verifyJob)
-    // await jobRepository.deleteJob(jobId);
+    
+    const data = await jobRepository.findJobById(userId,jobId);
+    if(!data)throw notFoundError("Job doesn't exist");
+    
+     await jobRepository.deleteJob(jobId);
+    return data
 }
 
 export const jobService = {
