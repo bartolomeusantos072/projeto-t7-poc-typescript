@@ -5,8 +5,8 @@
   "main": "index.js",
 
   "scripts": {
-    "test": "npx prisma migrate dev && nodemon src/app.ts",
-    "dev": "npx tsc"
+    "test": "nodemon src/app.ts",
+    "dev": "npx tsc && npx prisma migrate dev"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
