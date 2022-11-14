@@ -170,9 +170,7 @@ GET /job-all
 ```
 ### Search Jobs
 ```
-DELETE /job-delete/:id
-    - headers: {
-        "Authorization": "Bearer <token>"
-      }
+DELETE /job-search/:description-job
+    - headers: {}  
     - body: {}
 ```
