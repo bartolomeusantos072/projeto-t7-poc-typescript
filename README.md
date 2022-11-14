@@ -66,9 +66,9 @@ para executar o servidor.
 
 Abra seu VSCode e clique na extensão Thunder Client à esquerda em seguida escolha em menu->import e selecione "testar_poc.json"
 
-## 🚀 Routes
+## 🚀 Routes with examples
 
-### User register example
+### User register 
 
 ```
 POST /sign-in
@@ -94,7 +94,7 @@ POST /sign-in
 
 ```
 
-### User login
+### User login 
 
 ```
 POST /sign-in
@@ -155,6 +155,20 @@ OR
 
 ### Remove jobs
 
+```
+DELETE /job-delete/:id
+    - headers: {
+        "Authorization": "Bearer <token>"
+      }
+    - body: {}
+```
+### View Jobs
+```
+GET /job-all
+    - headers: {}
+    - body: {}
+```
+### Search Jobs
 ```
 DELETE /job-delete/:id
     - headers: {
