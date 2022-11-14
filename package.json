@@ -5,7 +5,7 @@
   "main": "index.js",
 
   "scripts": {
-    "test": "npx nodemon src/app.ts",
+    "test": "npx prisma migrate dev && nodemon src/app.ts",
     "dev": "npx tsc"
   },
   "prisma": {
