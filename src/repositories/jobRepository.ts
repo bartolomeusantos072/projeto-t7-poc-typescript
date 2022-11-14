@@ -1,9 +1,10 @@
+import { type } from "os";
 import {prisma} from "../config/database";
-// import { User,Service, Address } from "@prisma/client";
+
 import { CreateJob } from "../protocols/types";
 
 export async function findJobByUser(job:CreateJob, id:number) {
-     const result = prisma.service.findFirst({
+     const result =await prisma.service.findFirst({
         where:{
             AND:[
                 {
@@ -25,7 +26,7 @@ export async function findJobByUser(job:CreateJob, id:number) {
 export async function findJobById(userId:number,jobId:number){
    
 
-    const result = prisma.service.findFirst({
+    const result = await prisma.service.findFirst({
         where:{
              id:jobId,
              userId:userId,
@@ -35,25 +36,27 @@ export async function findJobById(userId:number,jobId:number){
 }
 
 export async function deleteJob(jobId:number) {
-    return prisma.service.delete({
+    const result = await prisma.service.delete({
         where:{
             id:jobId,
         }
     })
-    
+    return result
 }
 
 export async function addJob(job:CreateJob, id:number){
-    return prisma.service.create({
+    const result = await prisma.service.create({
         data:{
             ...job,
             userId:id,
         },
     })
+    return result
 }
+
 export async function updateJob(job:CreateJob,jobId:number) {
 
-    return prisma.service.update({
+    const result = await prisma.service.update({
         where: {
             id: jobId
         },
@@ -61,14 +64,23 @@ export async function updateJob(job:CreateJob,jobId:number) {
            ...job
         }
     })
+
+    return result
 }
 
-export async function findAllJobs(userId:number) {
-    const result = prisma.service.findMany({
+export async function findAllJobsByUser(userId:number) {
+
+    const result = await prisma.service.findMany({
       where:{
           userId:userId,
       }
     })
     
     return result    
-  }
+}
+
+
+export async function allJobs(){
+   const result = await prisma.service.findMany();
+   return result;
+}

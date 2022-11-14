@@ -13,3 +13,4 @@ export const upServiceSchema = joi.object<CreateJob>({
     descrition: joi.alternatives().try("descricao nao alterado", joi.string()),
     price: joi.alternatives().try("price nao alterado",joi.string().pattern(regex).allow("").trim()),
 })
+

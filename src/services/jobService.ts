@@ -1,6 +1,7 @@
 import { conflictError, notFoundError, unauthorizedError } from "../utils/errorUtils";
 import { CreateJob } from "../protocols/types";
 import * as jobRepository from "../repositories/jobRepository";
+import { prisma } from "../config/database";
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -19,9 +20,9 @@ async function addJobService(job:CreateJob , userId:number) {
     await jobRepository.addJob(job,userId)
     
 }
-async function findAllJobs(userId:number) {
+async function findAllJobsByUser(userId:number) {
 
-    const jobs = await jobRepository.findAllJobs(userId);
+    const jobs = await jobRepository.findAllJobsByUser(userId);
     return jobs.map(job => {
         return {
             ...job,
@@ -47,9 +48,41 @@ async function deleteJobService(userId:number, jobId:number){
     return data
 }
 
+async function searchJobService(search:string) {
+    
+    const results = await jobRepository.allJobs()
+
+    const jobs=results.filter(
+            function (result){
+                if(result.descrition.toLowerCase().indexOf(search.toLowerCase())>-1){
+                     
+                       return result.descrition
+                    
+                }
+            }
+            
+    // result.descrition => result.descriton.toLowerCase().indexOf(search.toLowerCase())>-1
+            )
+        
+    
+    return jobs
+
+  
+    
+}
+
+async function allJobs(){
+    const result = await jobRepository.allJobs()
+    return result
+   }
+
 export const jobService = {
     addJobService,
-    findAllJobs,
+    findAllJobsByUser,
     updateJobService,
     deleteJobService,
+    allJobs,
+    searchJobService,
+    
+    // allJobsService
 }

@@ -28,3 +28,6 @@ export const userSchema = joi.object<LoginUser>({
   password:joi.string().required()
 });
 
+export const searchSchema = joi.object({
+  search:joi.string().required()
+})
