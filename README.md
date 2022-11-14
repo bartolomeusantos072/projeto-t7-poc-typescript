@@ -1,6 +1,6 @@
-# Prestacao de Serviço(Break Branch)
+# Prestacao de Serviço (Break Branch)
 <p align = "center">
-   <img src="https://ibb.co/CtD666W" alt="" width="200" />
+   <img src="https://i.ibb.co/kyvJJJM/jellyfish.png" alt="" width="200" />
 </p>
 
 
@@ -39,6 +39,7 @@ Ao utilizar esse aplicativo qualquer pessoa pode solicitar ou oferercer um servi
 1.Este projeto precisa da plataforma Node.js para ser executado, caso você precisa instalar acesse [ Node.js ](https://nodejs.org/en/download/) 
 e [ npm ](https://www.npmjs.com/ ) primeiro.
 2.Lembre-se de iniciar seu banco de dados localmente e criar um arquivo `.env` com as variáveis ​​de ambiente listadas em `.env.example` .
+3.Utilize o visual code com a extensao Thunder Client(https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
 
 #  How to run
 
@@ -59,7 +60,105 @@ para instalar as dependências.
 E então executar o
 
 ```
-npm run dev
+npm test
 ```
 para executar o servidor.
 
+Abra seu VSCode e clique na extensão Thunder Client à esquerda em seguida escolha em menu->import e selecione "testar_poc.json"
+
+## 🚀 Routes
+
+### User register example
+
+```
+POST /sign-in
+    - headers: {}
+    - body: {
+        "name":"Sivirino",
+        "email":"quebragalho@gmail.com",
+        "password":"123456",
+        "phone":"3235321415",
+        "cellphone":"32999257063",
+        "cpf":"12345678911",
+        "photo":"https://en.wikipedia.org/wiki/File:Elmer_in_Rabbit_Fire_(1951).png",
+        "address":{
+           "street":"Rua Rogerio Portela",
+           "number":"14",
+           "complement":"",
+           "suburb":"Fragoso",
+           "zipCode":"36500123",
+           "country":"Mage",
+           "referencePoint":"Bar do Pelé"
+         }
+}
+
+```
+
+### User login
+
+```
+POST /sign-in
+    - headers: {}
+    - body: {
+        "email":"quebragalho@gmail.com",
+        "password":"password"
+      }
+```
+
+### Add Job with credential
+
+```
+POST /job-create
+    - headers: {
+        "Authorization": "Bearer <token>"
+      }
+    - body: {
+         "descrition":"Motagem e manutenção de computador",
+         "price":"R$ 100,00"
+      }
+```
+
+### Read user jobs 
+
+```
+GET /job-read
+    - headers: {
+        "Authorization": "Bearer <token>"
+      }
+    - body: {}
+```
+
+### update user jobs
+
+```
+PUT /job-update/:id
+    - headers: {
+        "Authorization": "Bearer <token>"
+      }
+    - body: {
+         "descrition":"manicure e pedicure"
+     }
+```
+OR
+```
+    - body: {
+         "price":"R$ 50,00"
+     }
+```
+OR
+```
+    - body: {
+         "descrition":"manicure e pedicure",
+         "price":"R$ 140,00"
+     }
+```
+
+### Remove jobs
+
+```
+DELETE /job-delete/:id
+    - headers: {
+        "Authorization": "Bearer <token>"
+      }
+    - body: {}
+```
